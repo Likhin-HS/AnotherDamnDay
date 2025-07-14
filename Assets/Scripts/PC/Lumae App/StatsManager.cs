@@ -20,12 +20,6 @@ public class StatsManager : MonoBehaviour
         UpdateUI();
     }
 
-    void Update()
-    {
-        UpdateLifetimeEarnings();
-        UpdateUI();
-    }
-
     public void AddVideoStats(int subsGained, int viewsGained, float earningsGained)
     {
         TotalSubs += subsGained;

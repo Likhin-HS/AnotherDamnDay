@@ -19,6 +19,7 @@ public class PostPanelController : MonoBehaviour
     public CanvasGroup canvasGroup;
 
     [Header("Chat Settings")]
+    public ChatLineDatabase chatDatabase; // Assign your new asset here in the Inspector
     public float chatInterval = 2f;
 
     [Header("UI Navigation")]
@@ -141,23 +142,48 @@ public class PostPanelController : MonoBehaviour
     {
         while (isPlaying)
         {
-            float t = Mathf.Clamp01(lastViewCount / 1000f);
-            float interval = Mathf.Lerp(4f, 0.2f, t) * UnityEngine.Random.Range(0.8f, 1.2f);
-            yield return new WaitForSeconds(interval);
-            if (!isPlaying) yield break;
-            if (panelVisible && lastViewCount > 0 && UnityEngine.Random.value < Mathf.Clamp01(lastViewCount / 20f))
+            // More realistic chat timing
+            float t = Mathf.Clamp01(lastViewCount / 5000f); // Slower ramp-up
+            float baseInterval = Mathf.Lerp(4f, 0.8f, t); // Less spammy max speed
+            yield return new WaitForSeconds(baseInterval * UnityEngine.Random.Range(0.7f, 1.3f));
+
+            if (!isPlaying || !panelVisible || lastViewCount <= 0) continue;
+
+            // Introduce bursts for more dynamic chat flow
+            bool isBurst = lastViewCount > 100 && UnityEngine.Random.value < 0.2f;
+            int messageCount = isBurst ? UnityEngine.Random.Range(2, 5) : 1;
+
+            for (int i = 0; i < messageCount; i++)
             {
-                var go = Instantiate(chatMessagePrefab, chatContent);
-                go.GetComponent<TMP_Text>().text = GetRandomChatLine();
-                go.transform.SetAsLastSibling();
-                Canvas.ForceUpdateCanvases();
-                var scrollRect = chatContent.GetComponentInParent<ScrollRect>();
-                if (scrollRect != null)
+                // Chance for each message to appear
+                if (UnityEngine.Random.value < Mathf.Clamp01(lastViewCount / 40f))
                 {
-                    scrollRect.verticalNormalizedPosition = 1f;
+                    var go = Instantiate(chatMessagePrefab, chatContent);
+                    go.GetComponent<TMP_Text>().text = GetRandomChatLine();
+                    go.transform.SetAsFirstSibling();
+                }
+
+                if (isBurst && i < messageCount - 1)
+                {
+                    yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 0.4f));
                 }
             }
+
+            // Update layout and scroll to top after the burst
+            Canvas.ForceUpdateCanvases();
+            var scrollRect = chatContent.GetComponentInParent<ScrollRect>();
+            if (scrollRect != null)
+            {
+                StartCoroutine(ScrollToTop(scrollRect));
+            }
         }
+    }
+
+    IEnumerator ScrollToTop(ScrollRect scrollRect)
+    {
+        // Wait for the end of frame ensures the layout group has updated before scrolling
+        yield return new WaitForEndOfFrame();
+        scrollRect.verticalNormalizedPosition = 1f;
     }
 
     void UpdateLiveStats(int viewers)
@@ -166,15 +192,22 @@ public class PostPanelController : MonoBehaviour
         {
             int newViewers = viewers - prevLiveViewers;
             displayedViews += newViewers;
+
+            if (IsPanelUnlocked(monetEarn?.monetization?.AffiliateLinksUnlockedPanel, affiliateLinksUnlockedAtStart))
+            {
+                int level = Monetization.GetAffiliateLinksLevel(liveAffiliateClicks);
+                float ctr = Monetization.GetAffiliateLinksCTR(level);
+                liveAffiliateClicks += Mathf.RoundToInt(newViewers * ctr);
+            }
+
             if (IsPanelUnlocked(monetEarn?.monetization?.AdRevenueUnlockedPanel, adRevenueUnlockedAtStart))
                 liveAdsWatched += Mathf.RoundToInt(newViewers * UnityEngine.Random.Range(0.3f, 0.4f));
             if (IsPanelUnlocked(monetEarn?.monetization?.MerchandiseUnlockedPanel, merchandiseUnlockedAtStart))
-                liveMerchItemsSold += Mathf.RoundToInt(newViewers * UnityEngine.Random.Range(0.01f, 0.03f));
+                liveMerchItemsSold += Mathf.RoundToInt(newViewers * UnityEngine.Random.Range(0.002f, 0.008f));
         }
         prevLiveViewers = viewers;
         int subsNow = Mathf.FloorToInt(displayedViews * subRate);
         if (subsNow > displayedSubs) displayedSubs = subsNow;
-        if (StatsManager.Instance.TotalSubs > 0 && UnityEngine.Random.value < 0.005f) displayedSubs -= 1;
         if (panelVisible)
         {
             liveCountText.text = $"{viewers}";
@@ -183,15 +216,12 @@ public class PostPanelController : MonoBehaviour
         }
         if (monetEarn != null)
         {
-            monetEarn.UpdateAffiliateLinksEarnings(viewers);
+            monetEarn.UpdateAffiliateLinksEarnings(lastViewCount);
             bool affiliateUnlocked = IsPanelUnlocked(monetEarn?.monetization?.AffiliateLinksUnlockedPanel, affiliateLinksUnlockedAtStart);
             SetMonetizationUIActive(affiliateUnlocked, adRevenueUnlockedAtStart, merchandiseUnlockedAtStart);
             if (affiliateUnlocked)
             {
-                int level = Monetization.GetAffiliateLinksLevel(liveAffiliateClicks);
-                float ctr = Monetization.GetAffiliateLinksCTR(level);
                 affiliateLiveClicksText.text = $"Link Clicks: {liveAffiliateClicks}";
-                liveAffiliateClicks += Mathf.RoundToInt(viewers * ctr * Time.deltaTime);
             }
             if (adRevenueUnlockedAtStart) adsWatchedText.text = $"Ads Watched: {liveAdsWatched}";
             if (merchandiseUnlockedAtStart) merchItemsSoldText.text = $"Items Sold: {liveMerchItemsSold}";
@@ -208,7 +238,7 @@ public class PostPanelController : MonoBehaviour
             monetEarn.monetization.TotalAffiliateClicks += liveAffiliateClicks;
             monetEarn.monetization.AdsWatched += liveAdsWatched;
             monetEarn.monetization.MerchandiseItemsSold += liveMerchItemsSold;
-            monetEarn.UpdateAffiliateLinksEarnings(0);
+            monetEarn.UpdateAffiliateLinksEarnings(lastViewCount);
             monetEarn.UpdateAdRevenueEarnings();
             monetEarn.UpdateMerchandiseEarnings();
         }
@@ -217,9 +247,13 @@ public class PostPanelController : MonoBehaviour
 
     string GetRandomChatLine()
     {
-        string[] names = { "Alex", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Sam", "Jamie", "Chris", "Drew", "Skyler", "Avery", "Cameron", "Quinn", "Jesse", "Harper" };
-        string[] samples = { "Lol, didn’t see that coming!", "Nice content, bro.", "This is fire!", "Can you collab with X?", "😂😂😂", "Who else is watching?", "More, please!", "Best vid today." };
-        return $"{names[UnityEngine.Random.Range(0, names.Length)]}: {samples[UnityEngine.Random.Range(0, samples.Length)]}";
+        if (chatDatabase == null || chatDatabase.userNames.Length == 0 || chatDatabase.chatSamples.Length == 0)
+        {
+            return "System: Chat database not configured.";
+        }
+        string name = chatDatabase.userNames[UnityEngine.Random.Range(0, chatDatabase.userNames.Length)];
+        string sample = chatDatabase.chatSamples[UnityEngine.Random.Range(0, chatDatabase.chatSamples.Length)];
+        return $"{name}: {sample}";
     }
 
     public void Close()

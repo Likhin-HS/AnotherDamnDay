@@ -17,6 +17,7 @@ public class PostButton : MonoBehaviour
     bool isCooldown = false;
     static PostButton lastActivatedButton;
     static List<PostButton> allButtons = new();
+    static bool aVideoIsPlaying = false;
 
     void Awake() => allButtons.Add(this);
 
@@ -41,6 +42,11 @@ public class PostButton : MonoBehaviour
             panelController.onBack += OnBack;
             panelController.onPanelClosed += OnPanelClosed;
         }
+    }
+
+    void Update()
+    {
+        button.interactable = isBackground || (!aVideoIsPlaying && !isCooldown);
         UpdateCooldownUI();
     }
 
@@ -50,14 +56,12 @@ public class PostButton : MonoBehaviour
         {
             panelController.Reopen();
             isBackground = false;
-            UpdateCooldownUI();
-            SetOtherButtonsInteractable(false);
         }
-        else if (!isCooldown)
+        else if (!isCooldown && !aVideoIsPlaying)
         {
+            aVideoIsPlaying = true;
             lastActivatedButton = this;
             panelController.Show(VideoConfigs.configs[configIndex]);
-            SetOtherButtonsInteractable(false);
         }
     }
 
@@ -66,9 +70,6 @@ public class PostButton : MonoBehaviour
         if (lastActivatedButton == this)
         {
             isBackground = true;
-            UpdateCooldownUI();
-            SetOtherButtonsInteractable(false);
-            button.interactable = true;
         }
     }
 
@@ -76,29 +77,30 @@ public class PostButton : MonoBehaviour
     {
         if (lastActivatedButton == this)
         {
+            aVideoIsPlaying = false;
             isBackground = false;
             StartCoroutine(CooldownCoroutine());
-            SetAllButtonsInteractable(true);
         }
     }
 
-    void OnPanelClosed() => SetAllButtonsInteractable(true);
+    void OnPanelClosed()
+    {
+        if (lastActivatedButton == this)
+        {
+            aVideoIsPlaying = false;
+        }
+    }
 
     System.Collections.IEnumerator CooldownCoroutine()
     {
         isCooldown = true;
         cooldownRemaining = cooldownTime;
-        button.interactable = false;
-        UpdateCooldownUI();
         while (cooldownRemaining > 0f)
         {
             yield return null;
             cooldownRemaining -= Time.deltaTime;
-            UpdateCooldownUI();
         }
         isCooldown = false;
-        button.interactable = true;
-        UpdateCooldownUI();
     }
 
     void UpdateCooldownUI()

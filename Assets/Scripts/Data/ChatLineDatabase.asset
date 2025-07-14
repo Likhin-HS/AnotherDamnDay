@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74f725806b2c494996c59d5e0cd2d75, type: 3}
+  m_Name: ChatLineDatabase
+  m_EditorClassIdentifier: 
+  userNames:
+  - lonelywolf
+  - sleepdealer
+  - zerohero
+  - couchpotato22
+  - lunarbeans
+  - average_jay
+  - muteinside
+  - icedlatte_addict
+  - kidwithnoplan
+  - 404dreams
+  - bruhzone
+  - anxiousalien
+  - ego.exe
+  - floppedagain
+  - 3amthinker
+  - chillbyt
+  - darkcoffeevibes
+  - fragileflex
+  - napking
+  - hustlehurts
+  - staticnoise
+  - halfcharged
+  - boredbutwired
+  - notokayokay
+  - datkiddope
+  - unbothered23
+  - scrollingforever
+  - zzz_zzz
+  - lostfiles
+  - softrage
+  - toxicbutcute
+  - cry.baby
+  - lofighost
+  - bigfatlie
+  - coldmilkonly
+  - failtosuccess
+  - notfunnylol
+  - brokebuthappy
+  - dreamingawake
+  - vibekiller
+  - antisocial.af
+  - wannabemute
+  - ramen4breakfast
+  - kingofmid
+  - dailydownbad
+  - gamervibes88
+  - 'npcobserver  '
+  - emotionsinHD
+  - silentalpha
+  - invisibleflex
+  - noonecaresman
+  - depressedlegend
+  - passivegrind
+  - loudthoughts
+  - 'bottledrage  '
+  - heartbuffering
+  - omeglekid
+  - needtherapypls
+  - looserunner
+  - echo.notfound
+  - seenzoned
+  - eatsleepcope
+  - sadboyarc
+  - coffeedreamz
+  - mumbler_
+  - staredownwall
+  - grindalone
+  - notverified
+  - brokendrill
+  - randompixels
+  - dreams.exe
+  - alphainshadow
+  - crackedenergy
+  - heresyourclown
+  - sleepyhawk
+  - ghostedagain
+  - tired_winner
+  - dopaminevoid
+  - unfithero
+  - insidejoke
+  - cereal4dinner
+  - exodus.vibe
+  - neverbetter
+  - streetcatmode
+  - moodloader
+  - botfriend
+  - nofilterrage
+  - wrongera
+  - skipthislife
+  - deepfriedmind
+  - autosabotage
+  - gameloop.exe
+  - stfuandgrind
+  - silence99
+  - '1percentleft  '
+  - dontextback
+  - ruinedplans
+  - tapouttoday
+  - manonstandby
+  - bruhzone
+  chatSamples:
+  - bro wtf
+  - this hit hard
+  - same man, same
+  - nah this too real
+  - L comment
+  - crying in silence
+  - literally me
+  - 'we all been there  '
+  - 100% facts
+  - damn
+  - "can\u2019t relate"
+  - bruh moment
+  - "stoppp \U0001F62D"
+  - pain is temporary, L is forever
+  - man just exposed me
+  - this the truth nobody says
+  - idk what to even say
+  - 'this is so mid  '
+  - "your mind \U0001F62E\u200D\U0001F4A8"
+  - she left me too
+  - i needed this fr
+  - respect++
+  - it do be like that
+  - deleting this app again
+  - ratio + cope
+  - he not lying tho
+  - nah keep going
+  - "stop i\u2019m screaming"
+  - too accurate
+  - you win
+  - i feel attacked
+  - "i\u2019m tired man"
+  - thought it was just me
+  - this made me think
+  - lowkey facts
+  - "that\u2019s deep"
+  - down bad certified
+  - this aged well
+  - "bro i\u2019m you"
+  - relatable af
+  - logged out after this
+  - '3am thoughts  '
+  - this one got me
+  - why you spitting facts like that
+  - "chillll \U0001F62D"
+  - realest post today
+  - man i miss her
+  - "it\u2019s always the late night"
+  - same energy
+  - silence says everything
+  - that one stings
+  - "\U0001F480\U0001F480\U0001F480"
+  - "i\u2019m not okay"
+  - "he\u2019s in his villain arc  "
+  - preach
+  - reality hits hard
+  - 'idc anymore  '
+  - this loop again
+  - i need sleep
+  - dude just disappeared
+  - this the one
+  - that look in his eyes
+  - "bro\u2019s not wrong"
+  - read that twice
+  - my heart dropped
+  - why so accurate
+  - keyboard warrior spotted
+  - i relate too much
+  - a true sigma
+  - what now
+  - left on read again
+  - this is my life rn
+  - someone check on him
+  - every damn time
+  - been there, done that
+  - "i can\u2019t keep doing this"
+  - please stop exposing me
+  - hit rewind
+  - gone ghost
+  - not even surprised anymore
+  - this world fake
+  - no one cares
+  - trying not to cry
+  - "i\u2019m still healing"
+  - i hate it here
+  - "y\u2019all too real"
+  - heavy stuff
+  - straight to the soul
+  - i miss how it used to be
+  - trust no one
+  - "it\u2019s always the strong ones"
+  - "don\u2019t mind me"
+  - mentally offline
+  - waiting for a miracle
+  - "i\u2019m numb to it"
+  - posting and vanishing
+  - emotions in check
+  - give it time
+  - not the first time
+  - 'deleting this tomorrow  '

@@ -1570,9 +1570,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46512269}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &47855580
 GameObject:
@@ -3436,6 +3436,7 @@ MonoBehaviour:
   chatContent: {fileID: 2066061818}
   chatMessagePrefab: {fileID: 2727779342937076099, guid: f58547786ae056f48a4d8cc80276b5a2, type: 3}
   canvasGroup: {fileID: 98036460}
+  chatDatabase: {fileID: 11400000, guid: 5e675e6fd70eb724dbae07d51706211f, type: 2}
   chatInterval: 2
   backButton: {fileID: 1554053134}
   monetEarn: {fileID: 1931136790}
@@ -8534,9 +8535,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289931282}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &289931284
 MonoBehaviour:
@@ -11972,13 +11973,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 69.6
+  m_fontSize: 63
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -41316,9 +41317,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622823849}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1650890837
 GameObject:
@@ -42725,7 +42726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configIndex: 0
   panelController: {fileID: 98036461}
-  cooldownTime: 2
+  cooldownTime: 20
   cooldownText: {fileID: 725992196}
   isBackground: 0
 --- !u!1 &1726612099
@@ -47736,7 +47737,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 0}
+  m_SizeDelta: {x: 65, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904313318
 MonoBehaviour:
@@ -51896,7 +51897,7 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
-  m_ReverseArrangement: 1
+  m_ReverseArrangement: 0
 --- !u!1 &2067050040
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,9 +22,9 @@ public class MonetEarn : MonoBehaviour
     public void IncrementPostCount()
     {
         postsThisDeal++;
-        if (postsThisDeal >= 3)
+        if (postsThisDeal >= 5)
         {
-            postsThisDeal -= 3;
+            postsThisDeal -= 5;
             if (monetization != null)
                 monetization.SponsorshipDealsCompleted++;
         }
@@ -34,7 +34,7 @@ public class MonetEarn : MonoBehaviour
     private void UpdateSponsorshipQuestUI()
     {
         if (sponsorshipProgressText != null)
-            sponsorshipProgressText.text = $"{postsThisDeal}/20";
+            sponsorshipProgressText.text = $"{postsThisDeal}/5";
     }
 
     // UI triggers for updating earnings
