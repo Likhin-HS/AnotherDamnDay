@@ -6,13 +6,26 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 5f;
     public Vector3 offset;
 
-    public float minX = -20.4f;     
-    public float maxX = 20.4f;
+    public Transform leftBoundary;
+    public Transform rightBoundary;
+
+    private float minX;
+    private float maxX;
 
     private float halfCamWidth;
 
     void Start()
     {
+        if (leftBoundary != null)
+        {
+            minX = leftBoundary.position.x;
+        }
+
+        if (rightBoundary != null)
+        {
+            maxX = rightBoundary.position.x;
+        }
+
         // Get half camera width in world units
         float camHeight = Camera.main.orthographicSize * 2;
         float camWidth = camHeight * Camera.main.aspect;

@@ -38,7 +38,7 @@ public class Monetization : MonoBehaviour
     public int SponsorshipDealsCompleted { get; set; }
     public float SponsorshipAvgPayout { get; set; }
     public float SponsorshipsEarnings { get; set; }
-    const int AffiliateLinksUnlockSubs = 1000, AdRevenueUnlockSubs = 5000, MerchandiseUnlockSubs = 10000, SponsorshipsUnlockSubs = 20000;
+    const int AdRevenueUnlockSubs = 1000, AffiliateLinksUnlockSubs = 5000, SponsorshipsUnlockSubs = 10000, MerchandiseUnlockSubs = 20000;
     int _lastTotalAffiliateClicks = -1, _lastTotalAdsWatched = -1, _lastTotalMerchItemsSold = -1, _lastTotalSponsorshipDeals = -1;
     bool sponsorshipsPreviouslyUnlocked = false;
     public float CurrentVideoEarningMultiplier { get; private set; } = 1f;
@@ -177,9 +177,9 @@ public class Monetization : MonoBehaviour
         6 => 8.75f, 7 => 10.00f, 8 => 12.50f, 9 => 15.00f, 10 => 20.00f, _ => 2.50f
     };
     public static int GetSponsorshipLevel(int dealsCompleted) =>
-        dealsCompleted >= 500 ? 10 : dealsCompleted >= 400 ? 9 : dealsCompleted >= 300 ? 8 : dealsCompleted >= 200 ? 7 :
-        dealsCompleted >= 150 ? 6 : dealsCompleted >= 100 ? 5 : dealsCompleted >= 70 ? 4 : dealsCompleted >= 50 ? 3 :
-        dealsCompleted >= 20 ? 2 : dealsCompleted >= 10 ? 1 : 0;
+        dealsCompleted >= 250 ? 10 : dealsCompleted >= 200 ? 9 : dealsCompleted >= 150 ? 8 : dealsCompleted >= 100 ? 7 :
+        dealsCompleted >= 75 ? 6 : dealsCompleted >= 50 ? 5 : dealsCompleted >= 35 ? 4 : dealsCompleted >= 25 ? 3 :
+        dealsCompleted >= 10 ? 2 : 1;
     public static float GetSponsorshipAvgPayoutForLevel(int level) => level switch
     {
         1 => 50f, 2 => 75f, 3 => 110f, 4 => 150f, 5 => 200f,

@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class PayApp : MonoBehaviour
 {
+    [Header("Core UI")]
     public Button openPayAppButton, confirmWalletButton, menuButton, backButton;
     public GameObject payAppPanel, mainPayUI, createWalletPanel, walletListPanel, walletIdDetailPanel;
     public TMP_InputField walletIdInput;
@@ -38,6 +40,11 @@ public class PayApp : MonoBehaviour
         if (grandTotalMoneyText != null)
         {
             grandTotalMoneyText.text = "Ð " + _grandTotal.ToString("F2");
+            // Add a clickable component to the money text for debugging
+            var eventTrigger = grandTotalMoneyText.gameObject.AddComponent<EventTrigger>();
+            var pointerClick = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
+            pointerClick.callback.AddListener((data) => { OnDebugAddMoney(); });
+            eventTrigger.triggers.Add(pointerClick);
         }
 
         var walletButton = walletIdDetailPanel.GetComponent<Button>();
@@ -126,5 +133,14 @@ public class PayApp : MonoBehaviour
         {
             MoneyUI.Instance.money = (long)_grandTotal;
         }
+    }
+
+    /// <summary>
+    /// Adds a fixed amount of money to the grand total for debugging purposes.
+    /// </summary>
+    void OnDebugAddMoney()
+    {
+        AddToGrandTotal(10000); // Add 10,000 money on each click
+        Debug.Log("Added 10,000 for testing. Current balance: " + _grandTotal);
     }
 }

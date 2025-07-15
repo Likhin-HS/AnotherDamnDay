@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class ShopItem
@@ -7,6 +8,8 @@ public class ShopItem
     public Button buyButton;
     public GameObject itemToEnable;
     public int price;
+    public TMP_Text purchasedText; // Text to show after purchase
+    public TMP_Text priceText;     // Text displaying the item's price
 }
 
 [System.Serializable]
@@ -32,6 +35,11 @@ public class Shopping : MonoBehaviour
                 {
                     item.buyButton.onClick.AddListener(() => BuyItem(item));
                 }
+                // Hide "Purchased" text by default
+                if (item.purchasedText != null)
+                {
+                    item.purchasedText.gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -45,7 +53,25 @@ public class Shopping : MonoBehaviour
             {
                 item.itemToEnable.SetActive(true);
             }
-            item.buyButton.interactable = false;
+            
+            // Disable the buy button
+            if (item.buyButton != null)
+            {
+                item.buyButton.gameObject.SetActive(false);
+            }
+
+            // Show the "Purchased" text
+            if (item.purchasedText != null)
+            {
+                item.purchasedText.text = "Purchased";
+                item.purchasedText.gameObject.SetActive(true);
+            }
+
+            // Turn the price text green
+            if (item.priceText != null)
+            {
+                item.priceText.color = new Color(0f, 200f / 255f, 83f / 255f);
+            }
         }
         else
         {
