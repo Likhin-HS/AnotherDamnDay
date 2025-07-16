@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 6d864c7b5e054b04bbaeaf2885d80eef
+guid: 861abf1f287af2649a8e16c6afd31524
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8591612670199998756
-    second: PC Sit Anim_0
+      213: 2139679176522604865
+    second: Sleep Anim_0
   - first:
-      213: 6026531474301075239
-    second: PC Sit Anim_1
+      213: -3301471976758264930
+    second: Sleep Anim_1
   - first:
-      213: -2474346821813157701
-    second: PC Sit Anim_2
+      213: -8530317493473702676
+    second: Sleep Anim_2
+  - first:
+      213: 8767084005223735434
+    second: Sleep Anim_3
+  - first:
+      213: -8003293181422701158
+    second: Sleep Anim_4
+  - first:
+      213: -5700498871805599856
+    second: Sleep Anim_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -78,7 +87,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -119,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PC Sit
+      name: Sleep Anim_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 566
-        height: 500
+        width: 715
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cd6dbf8fbc574c880800000000000000
-      internalID: -8591612670199998756
+      spriteID: 1412ee1efdaa1bd10800000000000000
+      internalID: 2139679176522604865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PC
+      name: Sleep Anim_4
       rect:
         serializedVersion: 2
-        x: 608
+        x: 720
         y: 0
-        width: 566
-        height: 500
+        width: 715
+        height: 398
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +165,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 72f3d69227a82a350800000000000000
-      internalID: 6026531474301075239
+      spriteID: e9bba65aab0de22d0800000000000000
+      internalID: -3301471976758264930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sleep Anim_5
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 0
+        width: 715
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec033c6f693e9980800000000000000
+      internalID: -8530317493473702676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sleep Anim_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 715
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b674ed1aeb7f254cbe4a45f98315e20
+      internalID: -678529964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sleep Anim_1
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 400
+        width: 715
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aeaf8c3145c9134da1f7a53af1f6725
+      internalID: -1890529239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sleep Anim_2
+      rect:
+        serializedVersion: 2
+        x: 1445
+        y: 400
+        width: 715
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32a14fda87f4a784cb44d57fbdc0e662
+      internalID: 61760408
       vertices: []
       indices: 
       edges: []
@@ -166,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 67ff2efc13300bf45a7a05ef371c9d69
+    spriteID: be9ae6347b780db4ab6e0b803b0c5744
     internalID: 0
     vertices: []
     indices: 
@@ -176,9 +273,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PC: 6026531474301075239
-      PC Sit: -8591612670199998756
-      PC Sit Anim_2: -2474346821813157701
+      Sleep Anim_0: -678529964
+      Sleep Anim_1: -1890529239
+      Sleep Anim_2: 61760408
+      Sleep Anim_3: 2139679176522604865
+      Sleep Anim_4: -3301471976758264930
+      Sleep Anim_5: -8530317493473702676
+      Sleep Anim_6: -295179852
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
